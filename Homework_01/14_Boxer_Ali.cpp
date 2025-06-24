@@ -18,7 +18,7 @@ int main() {
 		string a, b;
 		int d_begin, d_end;
 		int l, r;
-		int sum = 0, ans;
+		int sum = 0, ans = 0;
 		cin >> a >> b >> l >> r;
 		d_begin = get_day(a);
 		d_end = get_day(b);
@@ -29,7 +29,6 @@ int main() {
 				sum += 1;
 				ans = j;
 			}
-
 		}
 		if (sum == 0) cout << "impossible" << endl;
 		if (sum == 1) cout << ans << endl;

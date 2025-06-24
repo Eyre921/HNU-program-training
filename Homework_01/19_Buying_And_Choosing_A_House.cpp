@@ -3,12 +3,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 int m;
-struct P {
+
+struct P
+{
 	char id[19];
 	int social;
 	int area;
 	char date[11];
-	bool operator < (const P&b)const {
+
+	bool operator <(const P &b) const
+	{
 		if (area == 0 && social <= 24)return 0;
 		if (b.area == 0 && b.social <= 24)return 1;
 		if (area != b.area)return area < b.area;
@@ -22,11 +26,14 @@ struct P {
 		return 0;
 	}
 };
+
 P *p;
-P *getMess(int &n) {
+
+P *getMess(int &n)
+{
 	FILE *fp;
 	fp = fopen("house.bin", "rb");
-	fseek(fp, -1 * (long)sizeof(int), 2);
+	fseek(fp, -1 * (long) sizeof(int), 2);
 	fread(&n, sizeof(int), 1, fp);
 	rewind(fp);
 	P *tmp = new P[n];
@@ -34,9 +41,12 @@ P *getMess(int &n) {
 	fclose(fp);
 	return tmp;
 }
+
 int n;
-map<string, int>mp;
-void work() {
+map<string, int> mp;
+
+void work()
+{
 	char c[19];
 	scanf("%s", c);
 	string s = c;
@@ -47,10 +57,13 @@ void work() {
 	else if (l == r)printf("%d\n", l);
 	else r > m ? printf("%d/%d\n", m - l + 1, r - l + 1) : printf("%d %d\n", l, r);
 }
-int main() {
+
+int main()
+{
 	p = getMess(n);
 	sort(p, p + n);
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i)
+	{
 		string s = p[i].id;
 		mp[s] = i;
 	}
