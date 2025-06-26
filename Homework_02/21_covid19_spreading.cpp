@@ -1,3 +1,9 @@
+// 新型冠状病毒（COVID19）传播
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
