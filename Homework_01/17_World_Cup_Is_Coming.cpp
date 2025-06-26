@@ -8,7 +8,8 @@
 
 using namespace std;
 
-struct TeamStats {
+struct TeamStats
+{
     int points;
     int goal_diff;
     int goals_for;
@@ -17,20 +18,25 @@ struct TeamStats {
     TeamStats() : points(0), goal_diff(0), goals_for(0), goals_against(0) {}
 };
 
-bool compareTeams(const pair<string, TeamStats>& a, const pair<string, TeamStats>& b) {
-    if (a.second.points != b.second.points) {
+bool compareTeams(const pair<string, TeamStats> &a, const pair<string, TeamStats> &b)
+{
+    if (a.second.points != b.second.points)
+    {
         return a.second.points > b.second.points;
     }
-    if (a.second.goal_diff != b.second.goal_diff) {
+    if (a.second.goal_diff != b.second.goal_diff)
+    {
         return a.second.goal_diff > b.second.goal_diff;
     }
-    if (a.second.goals_for != b.second.goals_for) {
+    if (a.second.goals_for != b.second.goals_for)
+    {
         return a.second.goals_for > b.second.goals_for;
     }
     return a.first < b.first; // 按字典序排列
 }
 
-int main() {
+int main()
+{
     int n;
     cin >> n;
     cin.ignore(); // 忽略换行符
@@ -39,14 +45,16 @@ int main() {
     map<string, TeamStats> team_stats;
 
     // 读取球队名单
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         getline(cin, teams[i]);
         team_stats[teams[i]] = TeamStats();
     }
 
     // 读取比赛结果
     int num_matches = n * (n - 1) / 2;
-    for (int i = 0; i < num_matches; i++) {
+    for (int i = 0; i < num_matches; i++)
+    {
         string line;
         getline(cin, line);
 
@@ -75,19 +83,23 @@ int main() {
         team_stats[team2].goal_diff += (score2 - score1);
 
         // 更新积分
-        if (score1 > score2) {
+        if (score1 > score2)
+        {
             team_stats[team1].points += 3;
-        } else if (score1 < score2) {
+        } else if (score1 < score2)
+        {
             team_stats[team2].points += 3;
-        } else {
+        } else
+        {
             team_stats[team1].points += 1;
             team_stats[team2].points += 1;
         }
     }
 
     // 创建排序用的vector
-    vector<pair<string, TeamStats>> team_pairs;
-    for (const auto& team : teams) {
+    vector<pair<string, TeamStats> > team_pairs;
+    for (const auto &team: teams)
+    {
         team_pairs.push_back({team, team_stats[team]});
     }
 
@@ -96,7 +108,8 @@ int main() {
 
     // 取前n/2的球队
     vector<string> qualified_teams;
-    for (int i = 0; i < n / 2; i++) {
+    for (int i = 0; i < n / 2; i++)
+    {
         qualified_teams.push_back(team_pairs[i].first);
     }
 
@@ -104,7 +117,8 @@ int main() {
     sort(qualified_teams.begin(), qualified_teams.end());
 
     // 输出结果
-    for (const string& team : qualified_teams) {
+    for (const string &team: qualified_teams)
+    {
         cout << team << endl;
     }
 

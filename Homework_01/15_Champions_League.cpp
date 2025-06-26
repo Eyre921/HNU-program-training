@@ -5,44 +5,57 @@
 #include<vector>
 #include<map>
 using namespace std;
-struct team {
+
+struct team
+{
 	int score;
 	int goal;
 };
-struct tteam {
+
+struct tteam
+{
 	string name;
 	int score;
 	int goal;
 };
-bool cmp(tteam a, tteam b) {
+
+bool cmp(tteam a, tteam b)
+{
 	if (a.score != b.score)
 		return a.score > b.score;
 	else
 		return a.goal > b.goal;
 }
-int main() {
+
+int main()
+{
 	int t;
 	cin >> t;
 	vector<tteam> ranking; //将map数据放到vector中方便sort
-	while (t--) {
+	while (t--)
+	{
 		ranking.clear();
 		map<string, team> res;
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 12; i++)
+		{
 			int a, b;
 			string A, B;
-			string vs;//vs.
+			string vs; //vs.
 			cin >> A >> a >> vs >> b >> B;
 			if (a > b) res[A].score += 3;
-			else if (a == b) {
+			else if (a == b)
+			{
 				res[A].score += 1;
 				res[B].score += 1;
-			} else {
+			} else
+			{
 				res[B].score += 3;
 			}
 			res[A].goal += a - b;
 			res[B].goal += b - a;
 		}
-		for (map<string, team>::iterator it = res.begin(); it != res.end(); it++) {
+		for (map<string, team>::iterator it = res.begin(); it != res.end(); it++)
+		{
 			tteam temp;
 			temp.name = it->first;
 			temp.score = it->second.score;

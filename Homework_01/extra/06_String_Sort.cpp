@@ -41,7 +41,7 @@ int main()
         strings.emplace_back(str, CalculateDisorder(str), i);
     }
     sort(strings.begin(), strings.end(), compare);
-    for (auto &s : strings) cout << s.str << endl;
+    for (auto &s: strings) cout << s.str << endl;
 }
 
 /*
